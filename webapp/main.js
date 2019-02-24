@@ -12,6 +12,7 @@ cust.onchange = (e) => {
     setcolor(cust.value+"");
 }
 
+
 ctx.beginPath();
 ctx.fillStyle = "black";
 ctx.fillRect(0,0,8,8);
