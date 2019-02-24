@@ -17,7 +17,6 @@
 
 CRGB leds[NUMLEDS];
 
-
 void setup() {
     // put your setup code here, to run once:
     Serial.begin(9600);
@@ -31,7 +30,14 @@ void setup() {
     wifiManager.autoConnect("FrameAP");
 
     Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-    Firebase.stream("frames/" + WiFi.macAddress());
+    String path = "frames/" + WiFi.macAddress();
+    Firebase.stream(path);
+    
+    int b = Firebase.getInt(path + "/brightness");
+    if (b) {
+      FastLED.setBrightness(b);
+    } 
+
     FastLED.clear();
 
 }
@@ -58,6 +64,9 @@ void loop() {
           leds[i].g = g;
           leds[i].b = b;
         }
+      }
+      if (path.indexOf("brightness") > 0) {
+        FastLED.setBrightness(event.getInt("data"));
       }
       FastLED.show();
   }
