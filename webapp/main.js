@@ -1,8 +1,15 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var color = "red";
+
 function setcolor(c) {
     color = c;
+}
+
+var cust = document.getElementById('cust');
+
+cust.onchange = (e) => {
+    setcolor(cust.value+"");
 }
 
 ctx.beginPath();
