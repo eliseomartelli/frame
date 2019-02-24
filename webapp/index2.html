@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+
+    </head>
+    <body>
+        <canvas id="canvas" width="8px" height="8px"></canvas>
+        <br>
+        <button id="red" onclick="setcolor('red');">Red</button>
+        <button id="green" onclick="setcolor('green');">Green</button>
+        <button id="blue" onclick="setcolor('blue');">Blue</button>
+        <button id="yellow" onclick="setcolor('yellow');">Yellow</button>
+        <button id="orange" onclick="setcolor('orange');">Orange</button>
+        <button id="white" onclick="setcolor('white');">White</button>
+        <button id="black" onclick="setcolor('black');">Black</button>
+        <input id="cust" type="color">
+        <script src="./config.js"></script>
+        <script src="./main.js"></script>
+    </body>
+</html>
+
+<style>
+
+canvas {
+    border: 1px solid black;
+    width: calc(80%);
+    image-rendering: optimizeSpeed;             /* Older versions of FF */
+    image-rendering: -moz-crisp-edges;          /* FF 6.0+ */
+    image-rendering: -webkit-optimize-contrast; /* Safari */
+    image-rendering: -o-crisp-edges;            /* OS X */
+    image-rendering: pixelated;                 /* Awesome future-browsers */
+-ms-interpolation-mode: nearest-neighbor;   /* IE  */
+}
+</style>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <title>Frames</title>
+    </head>
+    <body>
+        <!-- Always shows a header, even in smaller screens. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Frames</span>
+                </div>
+            </header>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <div class="mdl-grid">
+                            <div class="mdl-layout-spacer"></div>
+                            <div class="mdl-cell mdl-cell--4-col">    
+                                <canvas id="canvas" width="8px" height="8px"></canvas>
+                                <br>
+                                <button id="red" onclick="setcolor('red');">Red</button>
+                                <button id="green" onclick="setcolor('green');">Green</button>
+                                <button id="blue" onclick="setcolor('blue');">Blue</button>
+                                <button id="yellow" onclick="setcolor('yellow');">Yellow</button>
+                                <button id="orange" onclick="setcolor('orange');">Orange</button>
+                                <button id="white" onclick="setcolor('white');">White</button>
+                                <button id="black" onclick="setcolor('black');">Black</button>
+                                <input id="cust" type="color">
+                                <script src="./config.js"></script>
+                                <script src="./main.js"></script>
+                            </div>
+                            <div class="mdl-layout-spacer"></div>
+                    </div>                            
+                </div>
+            </main>
+        </div>
+        
+        <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+        <script src="/config.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>
+
+<style>
+    html, body { overscroll-behavior-y: contain; }
+    canvas {
+        width: 100%;
+        max-width: 600px;
+        align-self: center;
+        image-rendering: optimizeSpeed;             /* Older versions of FF */
+        image-rendering: -moz-crisp-edges;          /* FF 6.0+ */
+        image-rendering: -webkit-optimize-contrast; /* Safari */
+        image-rendering: -o-crisp-edges;            /* OS X */
+        image-rendering: pixelated;                 /* Awesome future-browsers */
+        -ms-interpolation-mode: nearest-neighbor;   /* IE  */
+    }
+</style>
