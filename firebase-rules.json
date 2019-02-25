@@ -1,0 +1,22 @@
+{
+    "rules": {
+        "users": {
+            "$uid": {
+                ".write": "$uid === auth.uid",
+                ".read": "$uid === auth.uid"
+            }
+        },
+        "framesOf": {
+            "$uid": {
+                ".write": "$uid === auth.uid",
+                ".read": "$uid === auth.uid"
+            }
+        },
+        "frames": {
+            "$mac": {
+                ".read": true,
+                ".write": "root.child('framesOf').child(auth.uid).child($mac).val() === true"
+            }
+        }
+    }
+}
