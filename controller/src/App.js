@@ -1,25 +1,48 @@
 import React, { Component } from 'react';
+import createHistory from 'history/createBrowserHistory'
+
 import './App.css';
 import '../node_modules/material-design-lite/material.min.js';
 import '../node_modules/material-design-lite/material.min.css';
 
 import Toolbar from './modules/toolbar.js'
 import Auth from './modules/auth.js'
+import DeviceList from './modules/devicelist';
+
 
 import firebase from 'firebase';
 import config from './config.js';
 
 firebase.initializeApp(config);
+const history = createHistory();
 
 class App extends Component {
 
   state = {
-    isSignedIn: false // Local signed-in state.
+    isSignedIn: false,
+    currentUser: null
   };
 
+  handleNavigation(location) {
+    this.setState({location: location});
+  }
+
   componentDidMount() {
+    this.handleNavigation(history.location);
+    history.listen(this.handleNavigation);
+
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
-      (user) => this.setState({isSignedIn: !!user})
+      (user) => {
+        this.setState({
+            isSignedIn: !!user, 
+            currentUser: user.uid
+          }
+        )
+
+        if (this.state.isSignedIn === true) {
+          history.push('/app');
+        }
+      }
     );
   }
 
@@ -27,9 +50,17 @@ class App extends Component {
     this.unregisterAuthObserver();
   }
 
+  
+  uiConfig = {
+    signInOptions: [
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    ],
+    signInSuccessUrl: '/app'
+  };
+
   render() {
     var toshow = ((this.state.isSignedIn) ?
-                  <Auth firebase={firebase}/> : '');
+                  <DeviceList history={history} firebase={firebase} user={this.state.currentUser}/> : <Auth firebase={firebase} uiConfig={this.uiConfig}/>);
     return (
       <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <Toolbar />
