@@ -4,6 +4,7 @@ import '../node_modules/material-design-lite/material.min.js';
 import '../node_modules/material-design-lite/material.min.css';
 
 import Toolbar from './modules/toolbar.js'
+import Auth from './modules/auth.js'
 
 class App extends Component {
   render() {
@@ -12,9 +13,7 @@ class App extends Component {
         <Toolbar />
         <main className="mdl-layout__content">
           <div className="page-content">
-            <button className="mdl-button mdl-js-button mdl-button--raised">
-              Button
-            </button>
+            <Auth />
           </div>
         </main>
       </div>
